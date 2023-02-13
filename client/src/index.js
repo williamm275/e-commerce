@@ -6,13 +6,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 
+// Stripe API integration
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+const stripePromise = loadStripe('pk_test_51MVSrYA0w2j2R5RhQsVeSi7IV3WflXbGBOUG0QCiqgtByTWKZXMQHmUSPgmBHJq3Ms4LrV1wLH6ojzO3gtde8HqE00wsLTyJir');
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+			<Elements stripe={stripePromise}>
+				<App />
+			</Elements>
     </Provider>
   </React.StrictMode>
 );
